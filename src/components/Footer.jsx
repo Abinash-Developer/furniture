@@ -1,7 +1,11 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { userLogin } from '../api';
+import Swal from 'sweetalert2'
 const Footer = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
+  const [modalStatus,setModalStatus] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -10,7 +14,6 @@ const Footer = () => {
   const validateForm = () => {
       let isValid = true;
         const newErrors = {};
-
         if (!formData.email) {
             newErrors.email = 'Email is required';
             isValid = false;
@@ -27,11 +30,29 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validateForm()) {
-      
+       loginUser(formData);
+    }
+  }
+  const loginUser = async (formData)=>{
+    try {
+      const loggedInResult = await userLogin(formData);
+      if(loggedInResult.data.success){
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `${loggedInResult.data.message}`,
+            showConfirmButton: true,
+          }).then(function(result){
+            if(result.isConfirmed){
+              document.getElementsByClassName('btn-close')[0].click();
+            }
+          })
+      }
+    } catch (error) {
+     console.log(error)      
     }
   }
   return (<>
-
     <div
       className="modal fade"
       id="exampleModal"
@@ -65,7 +86,7 @@ const Footer = () => {
                 <label htmlFor="email" className="col-form-label">
                   Password
                 </label>
-                <input type="password" className="form-control" id="password" name="password" />
+                <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange}/>
                 {errors.password && <p className="error">{errors.password}</p>}
               </div>
               <button type="submit" className="btn btn-primary">
