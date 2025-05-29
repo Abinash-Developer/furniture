@@ -9,6 +9,7 @@ import Shop from './Shop';
 import Blog from './Blog';
 import Contact from './Contact';
 import { AuthProvider, useAuth } from './authContext';
+import ProtectedRoute from './ProtectedRoute';
 
 
 function App() {
