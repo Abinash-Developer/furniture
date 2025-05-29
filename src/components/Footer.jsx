@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { userLogin } from '../api';
 import Swal from 'sweetalert2'
+import { useAuth } from '../authContext';
 const Footer = () => {
+   const { login } = useAuth();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
-  const [modalStatus,setModalStatus] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,28 +30,10 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if(validateForm()) {
-       loginUser(formData);
+       login(formData);
     }
   }
-  const loginUser = async (formData)=>{
-    try {
-      const loggedInResult = await userLogin(formData);
-      if(loggedInResult.data.success){
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${loggedInResult.data.message}`,
-            showConfirmButton: true,
-          }).then(function(result){
-            if(result.isConfirmed){
-              document.getElementsByClassName('btn-close')[0].click();
-            }
-          })
-      }
-    } catch (error) {
-     console.log(error)      
-    }
-  }
+  
   return (<>
     <div
       className="modal fade"
