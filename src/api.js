@@ -9,3 +9,4 @@ const axiosInstance = axios.create({
   withCredentials: true
 });
 export const userLogin = (userData)=>(axiosInstance.post(`${API_URL}login`,userData));
+export const fetchCraftProducts = ()=>(axios.get(`${API_URL}craftedProducts`));

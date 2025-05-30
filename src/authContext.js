@@ -11,7 +11,6 @@ export const AuthProvider = ({ children }) => {
     try {
        const loggedInResult = await userLogin(userData);
        const token = loggedInResult.data.access_token;
-       console.log(token)
        localStorage.setItem('authToken', token);
       setToken(token);
        if(loggedInResult.data.success){

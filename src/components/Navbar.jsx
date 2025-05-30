@@ -1,8 +1,7 @@
 import { Link } from "react-router";
 import { useAuth } from "../authContext";
 const Navbar = () => {
-  const {isAuthenticated} = useAuth();
-  console.log("isAuthenticated",isAuthenticated);
+  const {isAuthenticated,logout} = useAuth();
   return (
     <>
       <nav
@@ -57,24 +56,27 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+            <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
               {!isAuthenticated && 
               <li>
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="/" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
                   <img src="images/user.svg"/>
                 </Link>
               </li>
               }
+              {isAuthenticated && 
               <li>
-                <Link className="nav-link" to="/">
+                <Link className="nav-link" to="#" onClick={logout}>
                 <i class="fa-solid fa-right-from-bracket"></i>
                 </Link>
               </li>
+               }
               <li>
                 <Link className="nav-link" to="/cart">
                   <img src="images/cart.svg"/>
                 </Link>
               </li>
+              
             </ul>
           </div>
         </div>

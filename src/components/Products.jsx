@@ -1,4 +1,27 @@
+import { useState,useEffect } from "react";
+import { fetchCraftProducts } from "../api";
+import { Link } from "react-router-dom";
+import { useAuth } from "../authContext";
 const Products = () => {
+  const [craftproducts,setCraftproducts] = useState([]);
+  const {isAuthenticated} = useAuth();
+  useEffect(()=>{
+    fetchCraftedProducts()
+  },[])
+  const fetchCraftedProducts = async ()=>{
+    try {
+      const carftRes = await fetchCraftProducts();
+      if(carftRes.data.success){
+        setCraftproducts(carftRes.data.results);
+        return;
+      }
+    } catch (error) {
+      console.log(error);      
+    }
+  }
+  const addTocart = async (id)=>{
+      
+  }
   return (
     <>
       <div className="product-section">
@@ -19,52 +42,24 @@ const Products = () => {
                 </a>
               </p>
             </div>
-            {/* End Column 1 */}
-            {/* Start Column 2 */}
-            <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
-                <img
-                  src="images/product-1.png"
-                  className="img-fluid product-thumbnail"
-                />
-                <h3 className="product-title">Nordic Chair</h3>
-                <strong className="product-price">$50.00</strong>
-                <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
-                </span>
-              </a>
-            </div>
-            {/* End Column 2 */}
-            {/* Start Column 3 */}
-            <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
-                <img
-                  src="images/product-2.png"
-                  className="img-fluid product-thumbnail"
-                />
-                <h3 className="product-title">Kruzo Aero Chair</h3>
-                <strong className="product-price">$78.00</strong>
-                <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
-                </span>
-              </a>
-            </div>
-            {/* End Column 3 */}
-            {/* Start Column 4 */}
-            <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
-                <img
-                  src="images/product-3.png"
-                  className="img-fluid product-thumbnail"
-                />
-                <h3 className="product-title">Ergonomic Chair</h3>
-                <strong className="product-price">$43.00</strong>
-                <span className="icon-cross">
-                  <img src="images/cross.svg" className="img-fluid" />
-                </span>
-              </a>
-            </div>
-            {/* End Column 4 */}
+            {craftproducts.map((items)=>(
+                <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+                    <Link className="product-item" to="#">
+                      <img
+                        src={"http://localhost:8000/" + items.image}
+                        className="img-fluid product-thumbnail"
+                      />
+                      <h3 className="product-title">{items.name}</h3>
+                      <strong className="product-price">${items.price}</strong>
+                      {isAuthenticated &&
+                      <span className="icon-cross" onClick={()=>addTocart(items.id)}>
+                        <img src="images/cross.svg" className="img-fluid"/>
+                      </span>
+                      }
+                      
+                    </Link>
+                  </div>
+            ))}
           </div>
         </div>
       </div>
