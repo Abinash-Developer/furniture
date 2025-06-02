@@ -1,12 +1,15 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { userLogin } from './api';
 import Swal from 'sweetalert2';
-
+import { getCartCount } from './api';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem('authToken'));
   const isAuthenticated = !!token;
+  useEffect(()=>{
+    cartCount();
+  })
   const login = async (userData) =>{
     try {
        const loggedInResult = await userLogin(userData);
@@ -33,9 +36,13 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('authToken');
     setToken(null);
   };
+  const cartCount = async ()=>{
+    const count = await getCartCount()
+    return count.data.result;
+  }
 
   return (
-    <AuthContext.Provider value={{ token,isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ token,isAuthenticated,cartCount, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

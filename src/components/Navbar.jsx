@@ -1,7 +1,14 @@
 import { Link } from "react-router";
 import { useAuth } from "../authContext";
+import { useEffect, useState } from "react";
 const Navbar = () => {
-  const {isAuthenticated,logout} = useAuth();
+  const {isAuthenticated,logout,cartCount} = useAuth();
+  const [cartTotalCount,setCartTotalCount] = useState(0);
+   useEffect(()=>{
+      cartCount().then((response)=>{
+        setCartTotalCount(response);
+      })
+   },[]);
   return (
     <>
       <nav
@@ -60,7 +67,7 @@ const Navbar = () => {
               {!isAuthenticated && 
               <li>
                 <Link className="nav-link" to="/" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
-                  <img src="images/user.svg"/>
+                  <img src="images/user.svg" alt=""/>
                 </Link>
               </li>
               }
@@ -73,7 +80,7 @@ const Navbar = () => {
                }
               <li>
                 <Link className="nav-link" to="/cart">
-                  <img src="images/cart.svg"/>
+                  <img src="images/cart.svg" alt=""/><span>{cartTotalCount}</span>
                 </Link>
               </li>
               

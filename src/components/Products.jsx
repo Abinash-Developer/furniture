@@ -1,10 +1,11 @@
 import { useState,useEffect } from "react";
-import { fetchCraftProducts } from "../api";
+import { fetchCraftProducts,customerAddTocart } from "../api";
 import { Link } from "react-router-dom";
 import { useAuth } from "../authContext";
+import Swal from 'sweetalert2'
 const Products = () => {
   const [craftproducts,setCraftproducts] = useState([]);
-  const {isAuthenticated} = useAuth();
+  const {isAuthenticated,cartCount} = useAuth();
   useEffect(()=>{
     fetchCraftedProducts()
   },[])
@@ -20,7 +21,23 @@ const Products = () => {
     }
   }
   const addTocart = async (id)=>{
-      
+    try {
+      const cartRes = await customerAddTocart(id);
+      if(cartRes.data.success){
+         Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `${cartRes.data.message}`,
+                    showConfirmButton: true,
+                  }).then((result)=>{
+                        if(result.isConfirmed){
+                          cartCount();
+                        }
+                  })
+      }
+    } catch (error) {
+       console.log(error);      
+    }
   }
   return (
     <>
@@ -48,12 +65,13 @@ const Products = () => {
                       <img
                         src={"http://localhost:8000/" + items.image}
                         className="img-fluid product-thumbnail"
+                        alt=""
                       />
                       <h3 className="product-title">{items.name}</h3>
                       <strong className="product-price">${items.price}</strong>
                       {isAuthenticated &&
                       <span className="icon-cross" onClick={()=>addTocart(items.id)}>
-                        <img src="images/cross.svg" className="img-fluid"/>
+                        <img src="images/cross.svg" className="img-fluid" alt=""/>
                       </span>
                       }
                       
