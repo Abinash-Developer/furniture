@@ -43,14 +43,14 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li>
-                            <a className="nav-link" href="blog.html">
+                            <Link className="nav-link" to="/blog">
                                 Blog
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a className="nav-link" href="contact.html">
+                            <Link className="nav-link" to="/contact">
                                 Contact us
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
