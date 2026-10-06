@@ -1,4 +1,5 @@
-const Hero = () => {
+const Hero = (props) => {
+    console.log("All props received:", props.pageProp.title);
     return (<><div className="hero">
         <div className="container">
             <div className="row justify-content-between">
