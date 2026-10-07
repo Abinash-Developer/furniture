@@ -1,12 +1,13 @@
 const Hero = (props) => {
-    console.log("All props received:", props.pageProp.title);
+    console.log("All props received:", props.pageProp?.title);
     return (<><div className="hero">
         <div className="container">
             <div className="row justify-content-between">
                 <div className="col-lg-5">
                     <div className="intro-excerpt">
                         <h1>
-                            Modern Interior <span clsas="d-block">Design Studio</span>
+                            {props.pageProp?.title || "Shop the Best Furniture"}
+                            {/* Modern Interior <span clsas="d-block">Design Studio</span> */}
                         </h1>
                         <p className="mb-4">
                             Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
