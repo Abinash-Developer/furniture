@@ -7,9 +7,10 @@ import Help from "../components/home/Help";
 import Popularproducts from "../components/home/Popularproducts";
 import Blog from "../components/home/Blog";
 const Home = () =>{
+    const pageProp = {title:"Modern Interior",description:"Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.",button:true,furniture:true};
     return(<>
         <Navbar />
-        <Hero />
+        <Hero {...pageProp}/>
         <Products />
         <Whychoose />
         <Help />

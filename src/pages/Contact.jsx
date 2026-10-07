@@ -2,16 +2,17 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/Hero"
 const Contact = () => {
+    const pageProp = {title:"Contact",description:"Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.",button:true,furniture:false};
     return (<>
         <Navbar />
-        <Hero />
+        <Hero {...pageProp} />
         <div className="untree_co-section">
-  <div className="container">
-    <div className="block">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-8 pb-4">
-          <div className="row mb-5">
-            <div className="col-lg-4">
+         <div className="container">
+          <div className="block">
+          <div className="row justify-content-center">
+           <div className="col-md-8 col-lg-8 pb-4">
+            <div className="row mb-5">
+             <div className="col-lg-4">
               <div
                 className="service no-shadow align-items-center link horizontal d-flex active"
                 data-aos="fade-left"
@@ -140,9 +141,7 @@ const Contact = () => {
     </div>
   </div>
 </div>
-
-
-        <Footer />
+<Footer />
     </>);
 }
 export default Contact;

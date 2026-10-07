@@ -1,33 +1,36 @@
-const Hero = (props) => {
-    console.log("All props received:", props.pageProp?.title);
+import {Link} from "react-router-dom";
+const Hero = ({title, description, button,furniture}) => {
     return (<><div className="hero">
         <div className="container">
             <div className="row justify-content-between">
                 <div className="col-lg-5">
                     <div className="intro-excerpt">
                         <h1>
-                            {props.pageProp?.title || "Shop the Best Furniture"}
-                            {/* Modern Interior <span clsas="d-block">Design Studio</span> */}
+                            {title || "Shop the Best Furniture"}
                         </h1>
                         <p className="mb-4">
-                            Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                            velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
+                            {description}
                         </p>
-                        <p>
-                            <a href="" className="btn btn-secondary me-2">
-                                Shop Now
-                            </a>
-                            <a href="#" className="btn btn-white-outline">
+                        {button && (    
+                            <p>
+                                <Link href="" className="btn btn-secondary me-2">
+                                    Shop Now
+                                </Link>
+                                <Link href="#" className="btn btn-white-outline">
                                 Explore
-                            </a>
+                            </Link>
                         </p>
+                        )}
                     </div>
                 </div>
+                {furniture &&(
                 <div className="col-lg-7">
                     <div className="hero-img-wrap">
                         <img src="images/couch.png" className="img-fluid" />
                     </div>
                 </div>
+                )}
+
             </div>
         </div>
     </div>

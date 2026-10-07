@@ -120,7 +120,7 @@ const Footer = () => {
                                     <a href="#">Leadership</a>
                                 </li>
                                 <li>
-                                    <a href="#">Privacy Policy</a>
+                                    <a href="#">Privacy Policys</a>
                                 </li>
                             </ul>
                         </div>
@@ -156,7 +156,7 @@ const Footer = () => {
                                 <a href="#">Terms &amp; Conditions</a>
                             </li>
                             <li>
-                                <a href="#">Privacy Policy</a>
+                                <a href="#">Privacy Policys</a>
                             </li>
                         </ul>
                     </div>
