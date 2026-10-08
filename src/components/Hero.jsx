@@ -30,7 +30,6 @@ const Hero = ({title, description, button,furniture}) => {
                     </div>
                 </div>
                 )}
-
             </div>
         </div>
     </div>

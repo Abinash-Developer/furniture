@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { NavLink,useLocation } from "react-router-dom";
 const Navbar = () => {
+    const location = useLocation();
     return (<>
         <nav
             className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
@@ -22,35 +23,35 @@ const Navbar = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsFurni">
                     <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="/">
+                        <li className={location.pathname === '/' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/">
                                 Home
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li>
-                            <Link className="nav-link" to="/shop">
+                        <li className={location.pathname === '/shop' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/shop">
                                 Shop
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li>
-                            <Link className="nav-link" to="/about">
+                        <li className={location.pathname === '/about' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/about">
                                 About us
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li>
-                            <Link className="nav-link" to="/services">
+                        <li className={location.pathname === '/services' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/services">
                                 Services
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li>
-                            <Link className="nav-link" to="/blog">
+                        <li className={location.pathname === '/blog' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/blog">
                                 Blog
-                            </Link>
+                            </NavLink>
                         </li>
-                        <li>
-                            <Link className="nav-link" to="/contact">
+                        <li className={location.pathname === '/contact' ? "nav-item active" : "nav-item"}>
+                            <NavLink className="nav-link" to="/contact">
                                 Contact us
-                            </Link>
+                            </NavLink>
                         </li>
                     </ul>
                     <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
