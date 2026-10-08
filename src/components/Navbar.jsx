@@ -56,9 +56,9 @@ const Navbar = () => {
                     </ul>
                     <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                         <li>
-                            <a className="nav-link" href="#">
+                            <NavLink className="nav-link" to="/login">
                                 <img src="images/user.svg" />
-                            </a>
+                            </NavLink>
                         </li>
                         <li>
                             <a className="nav-link" href="cart.html">
