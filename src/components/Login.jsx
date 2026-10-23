@@ -1,11 +1,12 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
+import axios from 'axios';
 export const signUpSchema = Yup.object({
   email: Yup.string()
     .email('Please enter a valid email')
     .required('Email is required'),
   password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
+    .min(4, 'Password must be at least 4 characters')
     .required('Password is required'),
 });
 const styles = {
@@ -76,8 +77,14 @@ const Login = () => {
             password: '',
         },
         validationSchema: signUpSchema,
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values) => {
+            console.log('Form values:', values);
+            try {
+                const loginResponse = await axios.post('https://slot-slackness-python.ngrok-free.dev/api/v1/users/login',{...values})
+                
+            }catch (error) {
+                console.error('Error occurred while logging in:', error);
+            }
         },
     });
     return (
