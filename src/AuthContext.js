@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // e.g., { id: 'u123', name: 'Alice', role: 'user' }
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Simulating fetching user data on mount
