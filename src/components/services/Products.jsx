@@ -57,7 +57,8 @@ const Products = () => {
           <h3 className="product-title">Ergonomic Chair</h3>
           <strong className="product-price">$43.00</strong>
           <span className="icon-cross">
-            <img src="images/cross.svg" className="img-fluid" />
+            <img src="images/cross.svg" className="img-fluid"
+             />
           </span>
         </a>
       </div>
@@ -65,7 +66,6 @@ const Products = () => {
     </div>
   </div>
 </div>
-
-    </>)
+</>)
 }
 export default Products;

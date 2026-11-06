@@ -6,9 +6,11 @@ import Services from './pages/Services';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
 import Login from './components/Login';
+import { Toaster } from 'sonner';
 function App() {
   return (
     <>
+     <Toaster position="top-right" richColors />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />

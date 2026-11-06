@@ -33,7 +33,7 @@ const Whychoose = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="col-6 col-md-6">
+                    <div className="col-6 col-md-6">
                             <div className="feature">
                                 <div className="icon">
                                     <img

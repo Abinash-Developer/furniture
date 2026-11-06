@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { toast } from 'sonner';
 export const signUpSchema = Yup.object({
   email: Yup.string()
     .email('Please enter a valid email')
@@ -81,9 +82,9 @@ const Login = () => {
             console.log('Form values:', values);
             try {
                 const loginResponse = await axios.post('https://slot-slackness-python.ngrok-free.dev/api/v1/users/login',{...values})
-                
+                console.log('Login response:', loginResponse);
             }catch (error) {
-                console.error('Error occurred while logging in:', error);
+                  toast.error('Please check your email and password');
             }
         },
     });
