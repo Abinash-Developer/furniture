@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { toast } from 'sonner';
+import {useAuth} from '../AuthContext';
 export const signUpSchema = Yup.object({
   email: Yup.string()
     .email('Please enter a valid email')
@@ -72,6 +73,7 @@ const styles = {
 };
 
 const Login = () => {
+    const {login} = useAuth();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -82,9 +84,10 @@ const Login = () => {
             console.log('Form values:', values);
             try {
                 const loginResponse = await axios.post('https://slot-slackness-python.ngrok-free.dev/api/v1/users/login',{...values})
-                console.log('Login response:', loginResponse);
+                toast.success('Login successful!');
+                login(loginResponse.data)
             }catch (error) {
-                  toast.error('Please check your email and password');
+                  toast.error('Please check your credentials and try again.');
             }
         },
     });
